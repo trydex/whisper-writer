@@ -365,6 +365,8 @@ class KeyListener:
             'SHIFT': frozenset({KeyCode.SHIFT_LEFT, KeyCode.SHIFT_RIGHT}),
             'ALT': frozenset({KeyCode.ALT_LEFT, KeyCode.ALT_RIGHT}),
             'META': frozenset({KeyCode.META_LEFT, KeyCode.META_RIGHT}),
+            '`': KeyCode.BACKQUOTE,
+            '~': KeyCode.BACKQUOTE,
         }
 
         for key in combination_string.upper().split('+'):
@@ -762,7 +764,10 @@ class PynputBackend(InputBackend):
         self.key_map = None
 
     def start(self):
-        """Start listening for keyboard and mouse events."""
+        """Start listening for keyboard and mouse events (idempotent)."""
+        if self.keyboard_listener is not None:
+            return
+
         if self.keyboard is None or self.mouse is None:
             from pynput import keyboard, mouse
             self.keyboard = keyboard
@@ -791,7 +796,13 @@ class PynputBackend(InputBackend):
     def _translate_key_event(self, native_event) -> tuple[KeyCode, InputEvent]:
         """Translate a pynput event to our internal event representation."""
         pynput_key, is_press = native_event
-        key_code = self.key_map.get(pynput_key, KeyCode.SPACE)
+        key_code = self.key_map.get(pynput_key)
+        if key_code is None:
+            vk = getattr(pynput_key, 'vk', None)
+            if vk is not None and vk in self.vk_map:
+                key_code = self.vk_map[vk]
+        if key_code is None:
+            key_code = KeyCode.SPACE
         event_type = InputEvent.KEY_PRESS if is_press else InputEvent.KEY_RELEASE
         return key_code, event_type
 
@@ -809,6 +820,10 @@ class PynputBackend(InputBackend):
         """Handle mouse click events."""
         translated_event = self._translate_key_event((button, pressed))
         self.on_input_event(translated_event)
+
+    vk_map = {
+        192: KeyCode.BACKQUOTE,
+    }
 
     def _create_key_map(self):
         """Create a mapping from pynput keys to our internal KeyCode enum."""
@@ -935,6 +950,9 @@ class PynputBackend(InputBackend):
             self.keyboard.KeyCode.from_char(';'): KeyCode.SEMICOLON,
             self.keyboard.KeyCode.from_char("'"): KeyCode.QUOTE,
             self.keyboard.KeyCode.from_char('`'): KeyCode.BACKQUOTE,
+            self.keyboard.KeyCode.from_char('ё'): KeyCode.BACKQUOTE,
+            self.keyboard.KeyCode.from_char('Ё'): KeyCode.BACKQUOTE,
+            self.keyboard.KeyCode.from_vk(192): KeyCode.BACKQUOTE,
             self.keyboard.KeyCode.from_char('\\'): KeyCode.BACKSLASH,
             self.keyboard.KeyCode.from_char(','): KeyCode.COMMA,
             self.keyboard.KeyCode.from_char('.'): KeyCode.PERIOD,

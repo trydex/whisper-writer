@@ -132,10 +132,10 @@ class SettingsWindow(BaseWindow):
         return widget
 
     def create_line_edit(self, value, key=None):
-        widget = QLineEdit(value)
+        widget = QLineEdit(value or '')
         if key == 'api_key':
             widget.setEchoMode(QLineEdit.Password)
-            widget.setText(os.getenv('OPENAI_API_KEY') or value)
+            widget.setText(os.getenv('OPENAI_API_KEY') or value or '')
         elif key == 'model_path':
             layout = QHBoxLayout()
             layout.addWidget(widget)
@@ -146,7 +146,52 @@ class SettingsWindow(BaseWindow):
             container = QWidget()
             container.setLayout(layout)
             return container
+        elif key in ('recording_start_sound_path', 'recording_stop_sound_path'):
+            return self._create_sound_picker(value)
         return widget
+
+    def _scan_wav_files(self):
+        assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'assets'))
+        if not os.path.isdir(assets_dir):
+            return assets_dir, []
+        files = sorted(f for f in os.listdir(assets_dir) if f.lower().endswith('.wav'))
+        return assets_dir, files
+
+    def _create_sound_picker(self, current_value):
+        assets_dir, wav_files = self._scan_wav_files()
+
+        combo = QComboBox()
+        combo.setEditable(False)
+        combo.addItem('(none)', userData='')
+        for name in wav_files:
+            combo.addItem(name, userData=os.path.join(assets_dir, name))
+        if current_value:
+            idx = combo.findData(current_value)
+            if idx < 0:
+                combo.addItem(os.path.basename(current_value), userData=current_value)
+                idx = combo.count() - 1
+            combo.setCurrentIndex(idx)
+
+        play_button = QPushButton('▶')
+        play_button.setFixedWidth(40)
+        play_button.setToolTip('Preview selected sound')
+
+        def _play():
+            import winsound
+            path = combo.currentData() or ''
+            if path and os.path.isfile(path):
+                winsound.PlaySound(path, winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_NODEFAULT)
+        play_button.clicked.connect(_play)
+
+        layout = QHBoxLayout()
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(combo, 1)
+        layout.addWidget(play_button)
+
+        container = QWidget()
+        container.setLayout(layout)
+        container.setProperty('is_sound_picker', True)
+        return container
 
     def create_help_button(self, description):
         help_button = QToolButton()
@@ -168,12 +213,29 @@ class SettingsWindow(BaseWindow):
         if file_path:
             widget.setText(file_path)
 
+    def browse_wav_path(self, widget):
+        assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'assets'))
+        file_path, _ = QFileDialog.getOpenFileName(self, "Select WAV sound", assets_dir, "WAV Files (*.wav);;All Files (*)")
+        if file_path:
+            widget.setText(file_path)
+
     def show_description(self, description):
         """Show a description dialog."""
         QMessageBox.information(self, 'Description', description)
 
     def save_settings(self):
         """Save the settings to the config file and .env file."""
+        try:
+            self._save_settings_impl()
+        except Exception as exc:
+            import traceback
+            print(f'[DBG] save_settings failed: {exc}', flush=True)
+            traceback.print_exc()
+
+    def _save_settings_impl(self):
+        import copy
+        old_config = copy.deepcopy(ConfigManager._instance.config)
+
         self.iterate_settings(self.save_setting)
 
         # Save the API key to the .env file
@@ -183,6 +245,10 @@ class SettingsWindow(BaseWindow):
 
         # Remove the API key from the config
         ConfigManager.set_config_value(None, 'model_options', 'api', 'api_key')
+
+        if ConfigManager._instance.config == old_config:
+            self.close()
+            return
 
         ConfigManager.save_config()
         QMessageBox.information(self, 'Settings Saved', 'Settings have been saved. The application will now restart.')
@@ -195,6 +261,21 @@ class SettingsWindow(BaseWindow):
             ConfigManager.set_config_value(value, category, sub_category, key)
         else:
             ConfigManager.set_config_value(value, category, key)
+
+    def _has_unsaved_changes(self):
+        """Compare current widget values against saved config."""
+        import copy
+        saved_config = copy.deepcopy(ConfigManager._instance.config)
+        try:
+            self.iterate_settings(self.save_setting)
+            return ConfigManager._instance.config != saved_config
+        except Exception as exc:
+            import traceback
+            print(f'[DBG] _has_unsaved_changes failed: {exc}', flush=True)
+            traceback.print_exc()
+            return False
+        finally:
+            ConfigManager._instance.config = saved_config
 
     def reset_settings(self):
         """Reset the settings to the saved values."""
@@ -223,10 +304,19 @@ class SettingsWindow(BaseWindow):
         elif isinstance(widget, QLineEdit):
             widget.setText(str(value) if value is not None else '')
         elif isinstance(widget, QWidget) and widget.layout():
-            # This is for the model_path widget
-            line_edit = widget.layout().itemAt(0).widget()
-            if isinstance(line_edit, QLineEdit):
-                line_edit.setText(str(value) if value is not None else '')
+            first = widget.layout().itemAt(0).widget()
+            if isinstance(first, QLineEdit):
+                first.setText(str(value) if value is not None else '')
+            elif isinstance(first, QComboBox):
+                if widget.property('is_sound_picker'):
+                    idx = first.findData(value or '')
+                    if idx < 0 and value:
+                        first.addItem(os.path.basename(value), userData=value)
+                        idx = first.count() - 1
+                    if idx >= 0:
+                        first.setCurrentIndex(idx)
+                else:
+                    first.setCurrentText(str(value) if value is not None else '')
 
     def get_widget_value_typed(self, widget, value_type):
         """Get the value of the widget with proper typing."""
@@ -243,10 +333,13 @@ class SettingsWindow(BaseWindow):
             else:
                 return text or None
         elif isinstance(widget, QWidget) and widget.layout():
-            # This is for the model_path widget
-            line_edit = widget.layout().itemAt(0).widget()
-            if isinstance(line_edit, QLineEdit):
-                return line_edit.text() or None
+            first = widget.layout().itemAt(0).widget()
+            if isinstance(first, QLineEdit):
+                return first.text() or None
+            if isinstance(first, QComboBox):
+                if widget.property('is_sound_picker'):
+                    return first.currentData() or None
+                return first.currentText().strip() or None
         return None
 
     def toggle_api_local_options(self, use_api):
@@ -283,6 +376,15 @@ class SettingsWindow(BaseWindow):
 
     def closeEvent(self, event):
         """Confirm before closing the settings window without saving."""
+        try:
+            unsaved = self._has_unsaved_changes()
+        except Exception as exc:
+            print(f'[DBG] closeEvent _has_unsaved_changes error: {exc}', flush=True)
+            unsaved = False
+        if not unsaved:
+            self.settings_closed.emit()
+            super().closeEvent(event)
+            return
         reply = QMessageBox.question(
             self,
             'Close without saving?',

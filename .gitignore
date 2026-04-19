@@ -130,3 +130,7 @@ dmypy.json
 
 # Configuration files
 config.yaml
+
+# Local launcher & runtime artifacts
+WhisperWriter.lnk
+whisper-writer.log

@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt, QRectF
-from PyQt5.QtGui import QPainter, QBrush, QColor, QFont, QPainterPath, QGuiApplication
+from PyQt5.QtGui import QPainter, QPen, QBrush, QColor, QFont, QPainterPath, QGuiApplication
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QMainWindow
 
 
@@ -35,23 +35,33 @@ class BaseWindow(QMainWindow):
         title_label = QLabel('WhisperWriter')
         title_label.setFont(QFont('Segoe UI', 12, QFont.Bold))
         title_label.setAlignment(Qt.AlignCenter)
-        title_label.setStyleSheet("color: #404040;")
+        title_label.setStyleSheet("color: #e6e6e6; background: transparent;")
 
         # Create a widget for the close button
         close_button_widget = QWidget()
+        close_button_widget.setStyleSheet("background: transparent;")
         close_button_layout = QHBoxLayout(close_button_widget)
         close_button_layout.setContentsMargins(0, 0, 0, 0)
 
         close_button = QPushButton('×')
-        close_button.setFixedSize(25, 25)
+        close_button.setFixedSize(28, 28)
         close_button.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
                 border: none;
-                color: #404040;
+                color: #b0b0b0;
+                font-size: 16pt;
+                font-weight: bold;
+                min-width: 28px;
             }
             QPushButton:hover {
-                color: #000000;
+                background-color: #c42b1c;
+                color: #ffffff;
+                border-radius: 4px;
+            }
+            QPushButton:pressed {
+                background-color: #8a1e14;
+                color: #ffffff;
             }
         """)
         close_button.clicked.connect(self.handleCloseButton)
@@ -63,6 +73,7 @@ class BaseWindow(QMainWindow):
         title_bar_layout.addWidget(title_label, 3)  # Title (with more width)
         title_bar_layout.addWidget(close_button_widget, 1)  # Close button
 
+        self.title_bar = title_bar
         self.main_layout.addWidget(title_bar)
         self.setCentralWidget(self.main_widget)
 
@@ -106,12 +117,29 @@ class BaseWindow(QMainWindow):
 
     def paintEvent(self, event):
         """
-        Create a rounded rectangle with a semi-transparent white background.
+        Rounded rectangle with dark fill + accent outer border + inner hairline.
+        Designed to stay visible on any background (dark editor, light surface, etc).
         """
-        path = QPainterPath()
-        path.addRoundedRect(QRectF(self.rect()), 20, 20)
+        radius = getattr(self, '_corner_radius', 14)
+        outer = QRectF(self.rect()).adjusted(1.5, 1.5, -1.5, -1.5)
+        inner = QRectF(self.rect()).adjusted(3.5, 3.5, -3.5, -3.5)
+
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
-        painter.setBrush(QBrush(QColor(255, 255, 255, 220)))
+
+        fill_path = QPainterPath()
+        fill_path.addRoundedRect(outer, radius - 1.5, radius - 1.5)
         painter.setPen(Qt.NoPen)
-        painter.drawPath(path)
+        painter.setBrush(QBrush(QColor(21, 18, 46, 252)))
+        painter.drawPath(fill_path)
+
+        outer_pen = QPen(QColor(139, 92, 246, 255), 3)
+        painter.setPen(outer_pen)
+        painter.setBrush(Qt.NoBrush)
+        painter.drawPath(fill_path)
+
+        inner_path = QPainterPath()
+        inner_path.addRoundedRect(inner, max(2.0, radius - 3.5), max(2.0, radius - 3.5))
+        inner_pen = QPen(QColor(196, 181, 253, 120), 1)
+        painter.setPen(inner_pen)
+        painter.drawPath(inner_path)

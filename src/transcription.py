@@ -16,11 +16,7 @@ def create_local_model():
     compute_type = local_model_options['compute_type']
     model_path = local_model_options.get('model_path')
 
-    if compute_type == 'int8':
-        device = 'cpu'
-        ConfigManager.console_print('Using int8 quantization, forcing CPU usage.')
-    else:
-        device = local_model_options['device']
+    device = local_model_options['device']
 
     try:
         if model_path:

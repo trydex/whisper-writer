@@ -2,7 +2,9 @@ import subprocess
 import os
 import signal
 import time
-from pynput.keyboard import Controller as PynputController
+import sys
+import keyboard as kbd_lib
+from pynput.keyboard import Controller as PynputController, Key
 
 from utils import ConfigManager
 
@@ -68,16 +70,10 @@ class InputSimulator:
 
     def _typewrite_pynput(self, text, interval):
         """
-        Simulate typing using pynput.
-
-        Args:
-            text (str): The text to type.
-            interval (float): The interval between keystrokes in seconds.
+        Inject text via SendInput Unicode (works in terminals too, like chirp does).
         """
-        for char in text:
-            self.keyboard.press(char)
-            self.keyboard.release(char)
-            time.sleep(interval)
+        time.sleep(0.12)
+        kbd_lib.write(text)
 
     def _typewrite_ydotool(self, text, interval):
         """

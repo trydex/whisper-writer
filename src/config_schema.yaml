@@ -165,3 +165,18 @@ misc:
     value: false
     type: bool
     description: "Set to true to play a noise after the transcription has been typed out."
+  recording_start_sound_path:
+    value: null
+    type: str
+    description: "Optional path to a WAV file played when recording starts. Blank uses bundled ping-up.wav. Alternatives in assets/: pop-up.wav"
+  recording_stop_sound_path:
+    value: null
+    type: str
+    description: "Optional path to a WAV file played when recording stops or is cancelled. Blank uses bundled ping-down.wav. Alternatives in assets/: pop-down.wav"
+  theme:
+    value: dark
+    type: str
+    description: "UI theme: dark or light. Restart required after change."
+    options:
+      - dark
+      - light
