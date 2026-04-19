@@ -108,7 +108,7 @@ class WhisperWriterApp(QObject):
 
         self.app = QApplication(sys.argv)
         self.app.setQuitOnLastWindowClosed(False)
-        self.app.setWindowIcon(QIcon(os.path.join('assets', 'ww-logo.png')))
+        self.app.setWindowIcon(self._build_tray_icon())
         self.app.setStyle('Fusion')
         theme = (ConfigManager.get_config_value('misc', 'theme') or 'dark').lower()
         self.app.setStyleSheet(self._light_stylesheet() if theme == 'light' else self._dark_stylesheet())
