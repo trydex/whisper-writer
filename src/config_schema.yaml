@@ -180,3 +180,13 @@ misc:
     options:
       - dark
       - light
+  status_window_theme:
+    value: lavender_light
+    type: str
+    description: "Style of the recording popup. lavender_* use contour mic + waveform; clean/dark use solid mic + spinner."
+    options:
+      - lavender_light
+      - lavender_dark
+      - lavender_violet
+      - clean
+      - dark

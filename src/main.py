@@ -315,7 +315,8 @@ class WhisperWriterApp(QObject):
         self.result_thread = None
 
         if not ConfigManager.get_config_value('misc', 'hide_status_window'):
-            self.status_window = StatusWindow()
+            theme_name = ConfigManager.get_config_value('misc', 'status_window_theme') or 'lavender'
+            self.status_window = StatusWindow(theme_name)
 
         self.create_tray_icon()
         self.key_listener.start()
