@@ -190,3 +190,7 @@ misc:
       - lavender_violet
       - clean
       - dark
+  status_window_position:
+    value: null
+    type: list
+    description: "Last [x, y] position of the status window. Updated automatically when the window is moved."

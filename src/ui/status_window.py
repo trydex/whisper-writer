@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import (
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ui.base_window import BaseWindow
+from utils import ConfigManager
 
 
 # -------- Theme --------------------------------------------------------------
@@ -738,15 +739,53 @@ class StatusWindow(BaseWindow):
             self.cancel_btn.raise_()
 
     def show(self):
-        screen = QApplication.primaryScreen()
-        screen_geometry = screen.geometry()
         window_width = self.width()
         window_height = self.height()
-        x = (screen_geometry.width() - window_width) // 2
-        y = screen_geometry.height() - window_height - 120
+        saved = self._load_saved_position(window_width, window_height)
+        if saved is not None:
+            x, y = saved
+        else:
+            screen = QApplication.primaryScreen()
+            screen_geometry = screen.geometry()
+            x = (screen_geometry.width() - window_width) // 2
+            y = screen_geometry.height() - window_height - 120
         self.move(x, y)
         self._pin_cancel_btn()
         super().show()
+
+    def _load_saved_position(self, w, h):
+        try:
+            pos = ConfigManager.get_config_value('misc', 'status_window_position')
+        except Exception:
+            return None
+        if not (isinstance(pos, (list, tuple)) and len(pos) == 2):
+            return None
+        try:
+            x, y = int(pos[0]), int(pos[1])
+        except (TypeError, ValueError):
+            return None
+        app = QApplication.instance()
+        if app is None:
+            return x, y
+        for screen in app.screens():
+            g = screen.availableGeometry()
+            if (g.left() <= x <= g.right() - w + 1) and (g.top() <= y <= g.bottom() - h + 1):
+                return x, y
+        return None
+
+    def _save_current_position(self):
+        try:
+            pos = self.pos()
+            ConfigManager.set_config_value([pos.x(), pos.y()], 'misc', 'status_window_position')
+            ConfigManager.save_config()
+        except Exception as exc:
+            print(f'[DBG] save status window position error: {exc}', flush=True)
+
+    def mouseReleaseEvent(self, event):
+        was_dragging = getattr(self, 'is_dragging', False)
+        super().mouseReleaseEvent(event)
+        if was_dragging:
+            self._save_current_position()
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
