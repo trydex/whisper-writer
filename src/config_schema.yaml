@@ -126,6 +126,10 @@ recording_options:
 
 # Post-processing options for the transcribed text
 post_processing:
+  enabled:
+    value: true
+    type: bool
+    description: "Master switch. When off, the raw Whisper output is pasted as-is: no engine, no cosmetic tweaks (period strip, trailing space, etc)."
   writing_key_press_delay:
     value: 0.005
     type: float
@@ -150,6 +154,41 @@ post_processing:
       - pynput
       - ydotool
       - dotool
+  engine:
+    value: rules
+    type: str
+    description: "Post-processing engine. 'off' = cosmetic only. 'rules' = deterministic Python rules (~0.03ms, no GPU). 'llm' = Ollama model (2-3 sec, needs a running Ollama service). Rules are recommended for speed + quality."
+    options:
+      - "off"
+      - "rules"
+      - "llm"
+  llm_api_url:
+    value: http://localhost:11434/api/chat
+    type: str
+    description: "URL of the Ollama-compatible chat endpoint used for LLM post-processing."
+  llm_model:
+    value: qwen3:4b-instruct-2507-q4_K_M
+    type: str
+    description: "Name of the model to use for LLM post-processing. Must be pulled in Ollama (e.g. `ollama pull qwen3:4b-instruct-2507-q4_K_M`). Use instruct/non-thinking variants — reasoning models waste seconds before producing an answer."
+  llm_prompt:
+    value: |
+      Редактируй транскрипт для русского мессенджера. Верни ТОЛЬКО итоговый текст, без пояснений.
+
+      Правила:
+      - "?" в конце если вопрос, "!" если восклицание, иначе ничего (НЕ ставь "." в конце).
+      - Не меняй слова и местоимения.
+      - Нет emoji-символов.
+      - Скобки вместо улыбки: ")" для дружеских сообщений, "))" для смешного/очень тёплого. В рабочих/нейтральных/негативных — без скобок.
+      - Скобки НЕ после "?" или "!".
+
+      Примеры:
+      IN: привет как дела → OUT: Привет) как дела?
+      IN: спасибо тебе → OUT: Спасибо тебе))
+      IN: встреча в 15 00 → OUT: Встреча в 15:00
+      IN: я устал → OUT: Я устал
+      IN: что делаешь → OUT: Что делаешь?
+    type: str
+    description: "System prompt that governs how the LLM reformats transcripts. Applied as the system message; the raw transcript is sent as the user message."
 
 # Miscellaneous settings
 misc:

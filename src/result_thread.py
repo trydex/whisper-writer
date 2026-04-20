@@ -10,7 +10,7 @@ from PyQt5.QtCore import QThread, QMutex, pyqtSignal
 from collections import deque
 from threading import Event
 
-from transcription import transcribe
+from transcription import transcribe_only, post_process_transcription
 from utils import ConfigManager
 
 
@@ -114,7 +114,11 @@ class ResultThread(QThread):
 
             # Time the transcription process
             start_time = time.time()
-            result = transcribe(audio_data, self.local_model)
+            raw = transcribe_only(audio_data, self.local_model)
+            pp_cfg = ConfigManager.get_config_section('post_processing')
+            if pp_cfg.get('enabled') is not False and (pp_cfg.get('engine') or '').lower() == 'llm':
+                self.statusSignal.emit('post_processing')
+            result = post_process_transcription(raw)
             end_time = time.time()
 
             transcription_time = end_time - start_time

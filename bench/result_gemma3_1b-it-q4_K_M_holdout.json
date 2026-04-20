@@ -1,0 +1,311 @@
+{
+  "label": "gemma3_1b",
+  "model": "gemma3:1b-it-q4_K_M",
+  "corpus": "holdout",
+  "avg_score": 84.0,
+  "avg_latency_s": 2.67,
+  "total_time_s": 80.2,
+  "n": 30,
+  "results": [
+    {
+      "input": "не видел моих ключей",
+      "category": "question_friendly",
+      "output": "Не видел моих ключей.",
+      "score": 73.1,
+      "issues": "no_trailing_period; ends_with_question_mark",
+      "latency_s": 2.66,
+      "eval_tokens": 7,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "ты уже проснулся",
+      "category": "question_friendly",
+      "output": "Привет! 😊",
+      "score": 59.1,
+      "issues": "length_ratio=0.56; no_emoji; preserve_pronoun:ты; ends_with_question_mark",
+      "latency_s": 2.62,
+      "eval_tokens": 5,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "взял зонтик",
+      "category": "question_neutral",
+      "output": "Взял зонтик)",
+      "score": 88.2,
+      "issues": "ends_with_question_mark",
+      "latency_s": 2.56,
+      "eval_tokens": 7,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "тебе помочь",
+      "category": "question_friendly",
+      "output": "Пожалуйста, расскажите, что вам нужно?",
+      "score": 80.6,
+      "issues": "length_ratio=3.45; preserve_pronoun:тебе",
+      "latency_s": 2.61,
+      "eval_tokens": 11,
+      "prompt_tokens": 739
+    },
+    {
+      "input": "у вас есть молоко",
+      "category": "question_neutral",
+      "output": "Что МОЖНО менять:\n- Пунктуацию в конце: \"?\" если это вопрос по смыслу, \"!\" если явное восклицание/эмоция.\n- Заглавную букву в начале и очевидные запятые.\n- Явные ошибки распознавания (только если точно уверен).\n\nЧто НЕЛЬЗЯ:\n- Менять слова, лицо, местоимения (\"ты\" не в \"я\", \"меня\" не в \"тебя\" и т.п.).\n- Перефразировать, сокращать, допол",
+      "score": 61.3,
+      "issues": "length_ratio=19.82; no_bracket_mid_punct; preserve_pronoun:вас; ends_with_question_mark",
+      "latency_s": 3.53,
+      "eval_tokens": 120,
+      "prompt_tokens": 740
+    },
+    {
+      "input": "рад тебя видеть",
+      "category": "positive",
+      "output": "Рад тебя видеть 😊",
+      "score": 88.0,
+      "issues": "no_emoji",
+      "latency_s": 2.58,
+      "eval_tokens": 7,
+      "prompt_tokens": 739
+    },
+    {
+      "input": "ты мне как родной",
+      "category": "positive",
+      "output": "Ты мне как родной! 😊",
+      "score": 89.0,
+      "issues": "no_emoji",
+      "latency_s": 2.57,
+      "eval_tokens": 9,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "моя звёздочка",
+      "category": "positive",
+      "output": "Привет! Как дела? 😊",
+      "score": 86.7,
+      "issues": "no_emoji",
+      "latency_s": 2.59,
+      "eval_tokens": 8,
+      "prompt_tokens": 742
+    },
+    {
+      "input": "я валяюсь от смеха",
+      "category": "funny",
+      "output": "Вы валяетесь от смеха! 😂",
+      "score": 88.0,
+      "issues": "no_emoji",
+      "latency_s": 2.58,
+      "eval_tokens": 10,
+      "prompt_tokens": 743
+    },
+    {
+      "input": "бабка зажгла на танцполе",
+      "category": "funny",
+      "output": "Бабка зажгла на танцполе!",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.58,
+      "eval_tokens": 11,
+      "prompt_tokens": 745
+    },
+    {
+      "input": "согласуйте техзадание до пятницы",
+      "category": "work",
+      "output": "Пожалуйста, предоставьте мне техзадание, который нужно отредактировать. Я жду.",
+      "score": 71.3,
+      "issues": "length_ratio=2.44; no_trailing_period",
+      "latency_s": 2.7,
+      "eval_tokens": 22,
+      "prompt_tokens": 746
+    },
+    {
+      "input": "нужно подписать три акта",
+      "category": "work",
+      "output": "Три акта:\n\n1.  Акт 1\n2.  Акт 2\n3.  Акт 3",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.82,
+      "eval_tokens": 30,
+      "prompt_tokens": 743
+    },
+    {
+      "input": "созвон в понедельник в десять",
+      "category": "work",
+      "output": "Встретимся в понедельник в 10.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.65,
+      "eval_tokens": 15,
+      "prompt_tokens": 745
+    },
+    {
+      "input": "отправь файл в общий чат",
+      "category": "work",
+      "output": "Пожалуйста, отправь файл.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.63,
+      "eval_tokens": 9,
+      "prompt_tokens": 744
+    },
+    {
+      "input": "деплой откатился назад",
+      "category": "work",
+      "output": "Привіт! Як справи? 😊",
+      "score": 88.5,
+      "issues": "no_emoji",
+      "latency_s": 2.58,
+      "eval_tokens": 9,
+      "prompt_tokens": 742
+    },
+    {
+      "input": "дождь опять весь день льёт",
+      "category": "negative",
+      "output": "Дождь опять весь день льёт.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.62,
+      "eval_tokens": 10,
+      "prompt_tokens": 744
+    },
+    {
+      "input": "снова голова болит",
+      "category": "negative",
+      "output": "Приболело) как?",
+      "score": 86.2,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.57,
+      "eval_tokens": 8,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "ничего не успеваю",
+      "category": "negative",
+      "output": "Забылся/а?",
+      "score": 88.5,
+      "issues": "length_ratio=0.59",
+      "latency_s": 2.55,
+      "eval_tokens": 7,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "вчера совсем не спал",
+      "category": "negative",
+      "output": "Вчера совсем не спал)",
+      "score": 86.2,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.61,
+      "eval_tokens": 9,
+      "prompt_tokens": 742
+    },
+    {
+      "input": "пошёл в магазин",
+      "category": "neutral",
+      "output": "Пошёл в магазин)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.61,
+      "eval_tokens": 6,
+      "prompt_tokens": 740
+    },
+    {
+      "input": "сижу работаю",
+      "category": "neutral",
+      "output": "Работаешь?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.53,
+      "eval_tokens": 4,
+      "prompt_tokens": 739
+    },
+    {
+      "input": "завтра будет дождь",
+      "category": "neutral",
+      "output": "Завтра будет дождь)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.58,
+      "eval_tokens": 8,
+      "prompt_tokens": 742
+    },
+    {
+      "input": "кот уронил чашку",
+      "category": "neutral",
+      "output": "кот уронил чашку.",
+      "score": 74.7,
+      "issues": "no_trailing_period; starts_uppercase",
+      "latency_s": 2.59,
+      "eval_tokens": 7,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "ну ты молодец",
+      "category": "exclaim",
+      "output": "Пожалуйста, не за что! 😊",
+      "score": 78.3,
+      "issues": "no_emoji; preserve_pronoun:ты",
+      "latency_s": 2.55,
+      "eval_tokens": 9,
+      "prompt_tokens": 740
+    },
+    {
+      "input": "да ладно серьёзно",
+      "category": "exclaim",
+      "output": "Что случилось?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.53,
+      "eval_tokens": 4,
+      "prompt_tokens": 742
+    },
+    {
+      "input": "вот это поворот",
+      "category": "exclaim",
+      "output": "Что МОЖНО менять:\n- Пунктуацию в конце: \"?\" если это вопрос по смыслу, \"!\" если явное восклицание/эмоция.\n- Заглавную букву в начале и очевидные запятые.\n- Явные ошибки распознавания (только если точно уверен).\n\nЧто НЕЛЬЗЯ:\n- Менять слова, лицо, местоимения (\"ты\" не в \"я\", \"меня\" не в \"тебя\" и т.п.).\n- Перефразировать, сокращать, допол",
+      "score": 76.0,
+      "issues": "length_ratio=22.47; no_bracket_mid_punct",
+      "latency_s": 3.55,
+      "eval_tokens": 120,
+      "prompt_tokens": 740
+    },
+    {
+      "input": "позвоню когда освобожусь",
+      "category": "neutral",
+      "output": "Позвони, когда освободишься.",
+      "score": 80.0,
+      "issues": "no_trailing_period",
+      "latency_s": 2.61,
+      "eval_tokens": 11,
+      "prompt_tokens": 743
+    },
+    {
+      "input": "не знаю что выбрать",
+      "category": "neutral",
+      "output": "Привет! 😊 Давай попробуем вместе. Что у тебя на уме? Может, ты хочешь, чтобы я помог с чем-то конкретным? Или просто поболтать?",
+      "score": 73.3,
+      "issues": "length_ratio=6.68; no_emoji",
+      "latency_s": 2.89,
+      "eval_tokens": 40,
+      "prompt_tokens": 740
+    },
+    {
+      "input": "давай сегодня в кино",
+      "category": "friendly",
+      "output": "Давай сегодня в кино? 😊",
+      "score": 86.7,
+      "issues": "no_emoji",
+      "latency_s": 2.59,
+      "eval_tokens": 8,
+      "prompt_tokens": 741
+    },
+    {
+      "input": "хочу спать уже",
+      "category": "neutral",
+      "output": "Хорошо, ложись спать. 😊",
+      "score": 66.7,
+      "issues": "no_emoji; no_reasoning_leak",
+      "latency_s": 2.61,
+      "eval_tokens": 12,
+      "prompt_tokens": 741
+    }
+  ]
+}

@@ -81,6 +81,46 @@ _PRELOADED_MODEL = None
 if ConfigManager.config_file_exists() and not ConfigManager.get_config_section('model_options').get('use_api'):
     _PRELOADED_MODEL = create_local_model()
 
+
+def _warmup_llm_async():
+    """Fire a trivial request to Ollama so the model + KV-cache are hot before the first real use."""
+    import threading
+    pp = ConfigManager.get_config_section('post_processing')
+    if pp.get('enabled') is False:
+        return
+    engine = (pp.get('engine') or 'off').lower()
+    if engine != 'llm':
+        return
+
+    def _worker():
+        import json as _json
+        import urllib.request as _ur
+        url = pp.get('llm_api_url') or 'http://localhost:11434/api/chat'
+        payload = {
+            'model': pp.get('llm_model') or 'qwen3:4b-instruct-2507-q4_K_M',
+            'messages': [
+                {'role': 'system', 'content': pp.get('llm_prompt') or ''},
+                {'role': 'user', 'content': 'привет'},
+            ],
+            'stream': False,
+            'think': False,
+            'keep_alive': -1,
+            'options': {'num_predict': 10},
+        }
+        try:
+            req = _ur.Request(url, data=_json.dumps(payload, ensure_ascii=False).encode('utf-8'),
+                              headers={'Content-Type': 'application/json; charset=utf-8'})
+            with _ur.urlopen(req, timeout=60) as r:
+                r.read()
+            print('[warmup] LLM ready', flush=True)
+        except Exception as exc:
+            print(f'[warmup] skipped: {exc}', flush=True)
+
+    threading.Thread(target=_worker, daemon=True).start()
+
+
+_warmup_llm_async()
+
 print('[DBG] before PyQt5 imports', flush=True)
 from audioplayer import AudioPlayer
 from pynput.keyboard import Controller

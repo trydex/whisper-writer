@@ -1,0 +1,421 @@
+{
+  "label": "short_prompt",
+  "model": "qwen3:4b-instruct-2507-q4_K_M",
+  "corpus": "main",
+  "avg_score": 98.5,
+  "avg_latency_s": 2.32,
+  "total_time_s": 95.1,
+  "n": 41,
+  "results": [
+    {
+      "input": "ты сегодня придёшь",
+      "category": "question_friendly",
+      "output": "Ты сегодня придёшь?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.34,
+      "eval_tokens": 9,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "когда ты освободишься",
+      "category": "question_friendly",
+      "output": "Когда ты освободишься?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.34,
+      "eval_tokens": 11,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "во сколько встреча завтра",
+      "category": "question_neutral",
+      "output": "Во сколько встреча завтра?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 9,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "что делаешь",
+      "category": "question_friendly",
+      "output": "Что делаешь?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 6,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "как дела",
+      "category": "question_friendly",
+      "output": "Как дела?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.26,
+      "eval_tokens": 4,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "почему так долго",
+      "category": "question_neutral",
+      "output": "Почему так долго?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "где мы встретимся",
+      "category": "question_neutral",
+      "output": "Где мы встретимся?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.33,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "сколько это стоит",
+      "category": "question_neutral",
+      "output": "Сколько это стоит?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.31,
+      "eval_tokens": 7,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "привет",
+      "category": "greeting",
+      "output": "Привет)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 5,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "привет как дела",
+      "category": "greeting",
+      "output": "Привет) как дела?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "здарова братан",
+      "category": "greeting",
+      "output": "Здарова братан))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.34,
+      "eval_tokens": 9,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "доброе утро",
+      "category": "greeting",
+      "output": "Доброе утро)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 7,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "спасибо тебе большое",
+      "category": "thanks",
+      "output": "Спасибо тебе)))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 7,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "благодарю",
+      "category": "thanks",
+      "output": "Благодарю))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 7,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "обожаю эту песню",
+      "category": "positive",
+      "output": "Обожаю эту песню))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.33,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "ты лучший",
+      "category": "positive",
+      "output": "Ты лучший))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 6,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "у меня день рождения в субботу",
+      "category": "positive",
+      "output": "У меня день рождения в субботу",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.35,
+      "eval_tokens": 10,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "это было реально смешно",
+      "category": "funny",
+      "output": "Это было реально смешно))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.32,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "ору не могу",
+      "category": "funny",
+      "output": "Ору не могу",
+      "score": 93.8,
+      "issues": "has_double_bracket_on_funny",
+      "latency_s": 2.24,
+      "eval_tokens": 5,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "блин ты меня сломал",
+      "category": "funny",
+      "output": "Блин ты меня сломал))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "встреча в 15 00 в переговорке",
+      "category": "work",
+      "output": "Встреча в 15:00 в переговорке",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.41,
+      "eval_tokens": 16,
+      "prompt_tokens": 270
+    },
+    {
+      "input": "сегодня надо сдать отчёт до шести вечера",
+      "category": "work",
+      "output": "Сегодня надо сдать отчёт до шести вечера",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.39,
+      "eval_tokens": 13,
+      "prompt_tokens": 267
+    },
+    {
+      "input": "адрес такой невский проспект двадцать пять",
+      "category": "work",
+      "output": "Адрес такой Невский проспект 25",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.41,
+      "eval_tokens": 13,
+      "prompt_tokens": 269
+    },
+    {
+      "input": "перезвони мне в три часа",
+      "category": "work",
+      "output": "Перезвони мне в три часа",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.33,
+      "eval_tokens": 10,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "документы уже готовы",
+      "category": "work",
+      "output": "Документы уже готовы",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 7,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "ну блин я устал за эту неделю",
+      "category": "negative",
+      "output": "Ну блин) я устал за эту неделю",
+      "score": 87.4,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.33,
+      "eval_tokens": 12,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "опять ничего не работает",
+      "category": "negative",
+      "output": "Опять ничего не работает",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 7,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "бесит эта погода",
+      "category": "negative",
+      "output": "Бесит эта погода))",
+      "score": 86.2,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.31,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "всё плохо я сломался",
+      "category": "negative",
+      "output": "Всё плохо) я сломался",
+      "score": 87.4,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.39,
+      "eval_tokens": 11,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "ок договорились",
+      "category": "ack",
+      "output": "Ок) договорились",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.29,
+      "eval_tokens": 6,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "понял принял",
+      "category": "ack",
+      "output": "Понял) принял",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 7,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "хорошо",
+      "category": "ack",
+      "output": "Хорошо",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.26,
+      "eval_tokens": 5,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "да",
+      "category": "ack",
+      "output": "да",
+      "score": 94.7,
+      "issues": "starts_uppercase",
+      "latency_s": 2.23,
+      "eval_tokens": 2,
+      "prompt_tokens": 256
+    },
+    {
+      "input": "как же это круто",
+      "category": "exclaim",
+      "output": "Как же это круто))",
+      "score": 93.8,
+      "issues": "has_exclamation",
+      "latency_s": 2.32,
+      "eval_tokens": 7,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "офигеть",
+      "category": "exclaim",
+      "output": "Офигеть))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 6,
+      "prompt_tokens": 258
+    },
+    {
+      "input": "не могу поверить что они выиграли",
+      "category": "exclaim",
+      "output": "Не могу поверить что они выиграли))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.35,
+      "eval_tokens": 11,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "слушай я тут подумал можем сегодня вечером сходить в кино",
+      "category": "friendly_long",
+      "output": "Слушай) я тут подумал можем сегодня вечером сходить в кино?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.49,
+      "eval_tokens": 21,
+      "prompt_tokens": 272
+    },
+    {
+      "input": "отправил тебе документы проверь пожалуйста когда будет время",
+      "category": "friendly_long",
+      "output": "Отправил тебе документы) Проверь пожалуйста когда будет время?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.48,
+      "eval_tokens": 20,
+      "prompt_tokens": 271
+    },
+    {
+      "input": "сегодня был очень длинный день но всё получилось",
+      "category": "friendly_long",
+      "output": "Сегодня был очень длинный день, но всё получилось",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.36,
+      "eval_tokens": 13,
+      "prompt_tokens": 266
+    },
+    {
+      "input": "ага",
+      "category": "ack",
+      "output": "Ага",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.24,
+      "eval_tokens": 3,
+      "prompt_tokens": 257
+    },
+    {
+      "input": "ммм",
+      "category": "noise",
+      "output": "ммм",
+      "score": 94.7,
+      "issues": "starts_uppercase",
+      "latency_s": 2.27,
+      "eval_tokens": 4,
+      "prompt_tokens": 258
+    }
+  ]
+}

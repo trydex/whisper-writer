@@ -1,0 +1,311 @@
+{
+  "label": "llama32_1b",
+  "model": "llama3.2:1b-instruct-q4_K_M",
+  "corpus": "holdout",
+  "avg_score": 72.8,
+  "avg_latency_s": 2.6,
+  "total_time_s": 78.1,
+  "n": 30,
+  "results": [
+    {
+      "input": "не видел моих ключей",
+      "category": "question_friendly",
+      "output": "Что такое ключи? Это означает, что вы хотите, чтобы мы исправляли или изменяли определенные части текста, чтобы он соответствовал определенным стандартам или нормам.\n\nВ частности, вы хотите, чтобы:\n\n1. Пunktация в конце был точным: \".\" перед скобками и перед фразами.\n2. Заглавная буква была в начале и запятые были уникальными.\n3. Явные ошибки распознавания были устранены (только если точно уверен).\n4. С",
+      "score": 61.3,
+      "issues": "length_ratio=20.30; no_bracket_mid_punct; preserve_pronoun:моих; ends_with_question_mark",
+      "latency_s": 2.95,
+      "eval_tokens": 120,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "ты уже проснулся",
+      "category": "question_friendly",
+      "output": "IN: прося myself как о'clock\nOUT: Прися myself) как о'clock?\nIN: у меня есть задачи и проблемы\nOUT: У меня есть задачи и проблемы)\nIN: я не люблю этотjob\nOUT: Я не люблю этот job)\nIN: мне нужна новая практика\nOUT: Мне нужна новая практика)\nIN: я хочу быть independent\nOUT: Я хочу быть independent)\nIN: у меня есть время на лекции\nOUT: У меня есть время на лекцию",
+      "score": 69.9,
+      "issues": "length_ratio=22.62; preserve_pronoun:ты; ends_with_question_mark",
+      "latency_s": 2.96,
+      "eval_tokens": 120,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "взял зонтик",
+      "category": "question_neutral",
+      "output": "Итак, вы хотите изменить транскрипт голосового сообщения для русского мессенджera в дружеский стиль. \n\nЧто МОЖНО менять:\n- Пунктуацию в конце: \"?\" если это вопрос по смыслу, \"!\" если явное восклицание/эмоция.\n- Заглавную букву в начале и очевидные запятые.\n- Явные ошибки распознавания (только если точно уверен).\n\nЧто НЕЛЬЗЯ:\n- Менять слова, лицо",
+      "score": 49.4,
+      "issues": "length_ratio=31.55; no_bracket_mid_punct; no_reasoning_leak; ends_with_question_mark",
+      "latency_s": 2.98,
+      "eval_tokens": 120,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "тебе помочь",
+      "category": "question_friendly",
+      "output": "Я могу помочь вам редактировать транскрипт голосового сообщения для русского мессенджера. Кто-то может быть не в состоянии изменить определенные аспекты, и я могу помочь вам с этим.\n\nКто-то может быть не в состоянии изменить слова, лицо, местоимения (\"ты\" не в \"я\", \"меня\" не в \"тебя\" и т.п.), они могут быть не в состоянии перефразировать, сокращать, дополнять, переставлять слова, они могут быть не",
+      "score": 61.3,
+      "issues": "length_ratio=36.36; no_bracket_mid_punct; preserve_pronoun:тебе; ends_with_question_mark",
+      "latency_s": 2.98,
+      "eval_tokens": 120,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "у вас есть молоко",
+      "category": "question_neutral",
+      "output": "я не могу испечь anything, но у меня есть много что на выбор.",
+      "score": 49.5,
+      "issues": "length_ratio=3.59; no_trailing_period; preserve_pronoun:вас; ends_with_question_mark; starts_uppercase",
+      "latency_s": 2.31,
+      "eval_tokens": 18,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "рад тебя видеть",
+      "category": "positive",
+      "output": "Итак, теперь у нас есть текст. Давайте его редактируем в нужный стиль.\n\nIN: привет как дела\nOUT: Привет) как дела?\n\nIN: спасибо тебе большое\nOUT: Спасибо тебе большое))\n\nIN: обожаю эту песню\nOUT: Обожаю эту песню))\n\nIN: это было реально смешно\nOUT: Это было реально смешно))\n\nIN: у меня день рождения в субботу\nOUT: У меня день рождения в субботу))\n\nIN: что дела",
+      "score": 60.2,
+      "issues": "length_ratio=24.13; no_reasoning_leak; preserve_pronoun:тебя",
+      "latency_s": 2.96,
+      "eval_tokens": 120,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "ты мне как родной",
+      "category": "positive",
+      "output": "Я не могу предоставить информацию или指导 по теме, связанной сChild sexual exploitation.",
+      "score": 54.9,
+      "issues": "length_ratio=5.06; no_trailing_period; preserve_pronoun:ты; preserve_pronoun:мне",
+      "latency_s": 2.4,
+      "eval_tokens": 22,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "моя звёздочка",
+      "category": "positive",
+      "output": "Мой донный!",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.26,
+      "eval_tokens": 7,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "я валяюсь от смеха",
+      "category": "funny",
+      "output": "Огромного смеха! 😂🤣",
+      "score": 78.3,
+      "issues": "no_emoji; preserve_pronoun:я",
+      "latency_s": 2.36,
+      "eval_tokens": 14,
+      "prompt_tokens": 817
+    },
+    {
+      "input": "бабка зажгла на танцполе",
+      "category": "funny",
+      "output": "Вот вариант, как я бы редактировал транскрипт:\n\nБABKA ЗЖИГЛА на танцполе.\n\nВот итоговый текст:\nБАБКА ЗЖИГЛА на ТАНЦПOLE.",
+      "score": 66.7,
+      "issues": "length_ratio=5.00; no_trailing_period",
+      "latency_s": 2.59,
+      "eval_tokens": 52,
+      "prompt_tokens": 821
+    },
+    {
+      "input": "согласуйте техзадание до пятницы",
+      "category": "work",
+      "output": "Согласие на задание до пятницы:\n\n**Задача:** Редактировать транскрипт голосового сообщения для русского мессенджера в соответствии с предоставленным стилем и правилами.\n\n**Требуемые навыки:**\n\n* Понимание и применение предоставленного стиля и правил.\n* Умение chỉnhить текст без кавычек,without скобок и without запятых.\n* Умение chỉnhить текст в соответствии с необходимыми тономами ( дружескими, раз",
+      "score": 88.5,
+      "issues": "length_ratio=12.53",
+      "latency_s": 2.95,
+      "eval_tokens": 120,
+      "prompt_tokens": 819
+    },
+    {
+      "input": "нужно подписать три акта",
+      "category": "work",
+      "output": "Я не могу подписать акты, поскольку это требует юридических знаний и практики, а также руководства по защите данных и конфиденциальности. Если у вас есть вопросы или проблемы с транскриптом, яสามารถ помочь вам с этой задачей.",
+      "score": 71.3,
+      "issues": "length_ratio=9.38; no_trailing_period",
+      "latency_s": 2.63,
+      "eval_tokens": 66,
+      "prompt_tokens": 818
+    },
+    {
+      "input": "созвон в понедельник в десять",
+      "category": "work",
+      "output": "Понедельник, 12.10. - Встреча с Титой в 14:00.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.38,
+      "eval_tokens": 27,
+      "prompt_tokens": 820
+    },
+    {
+      "input": "отправь файл в общий чат",
+      "category": "work",
+      "output": "Tôi не могу предоставить вам доступ кAnyChat или любому другим ресурсу, который позволяет редактировать транскрипт голосового сообщения для русского мессенджера.",
+      "score": 71.3,
+      "issues": "length_ratio=6.71; no_trailing_period",
+      "latency_s": 2.48,
+      "eval_tokens": 40,
+      "prompt_tokens": 818
+    },
+    {
+      "input": "деплой откатился назад",
+      "category": "work",
+      "output": "Пожалуюсь, что вы не верните текст. Валянтно, давайте начнем с того, что вы хотели вернуть text:\n\nIN: привет как дела\nOUT: Привет) как дела?\n\nВернитесь так:\nIN: привет как дела?\nOUT: Привет как дела?)\n\nТеперь я вернусь в исходный текст.",
+      "score": 48.3,
+      "issues": "length_ratio=10.73; no_trailing_period; no_bracket_after_qmark; no_brackets_in_work_or_negative",
+      "latency_s": 2.74,
+      "eval_tokens": 85,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "дождь опять весь день льёт",
+      "category": "negative",
+      "output": "Дождь опять весь день льёт.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.28,
+      "eval_tokens": 11,
+      "prompt_tokens": 818
+    },
+    {
+      "input": "снова голова болит",
+      "category": "negative",
+      "output": "Теперь, когда у вас headache, я вытащу тумор из вашего脑а.\n\nВот итоговый текст, без кавычек и пояснений:\n\nIN: привет как дела\nOUT: Привет) как дела?\nIN: спасибо тебе большое\nOUT: Спасибо тебе большое))\nIN: обожаю эту песню\nOUT: Обожаю эту песню))\nIN: это было реально смешно\nOUT: Это было реально смешно))\nIN: у меня день рождения в субботу",
+      "score": 74.7,
+      "issues": "length_ratio=18.83; no_brackets_in_work_or_negative",
+      "latency_s": 2.95,
+      "eval_tokens": 120,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "ничего не успеваю",
+      "category": "negative",
+      "output": "Тогда давайте попробуем найти что-то, чтобы помочь. Что конкретно нужно сделать? Нам нужно изменить текст или сделать gì-то иное?",
+      "score": 88.5,
+      "issues": "length_ratio=7.59",
+      "latency_s": 2.44,
+      "eval_tokens": 36,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "вчера совсем не спал",
+      "category": "negative",
+      "output": "Вчера совсем не спал? \n\nIN: вчера не спала\nOUT: Вчера не спала)",
+      "score": 74.7,
+      "issues": "length_ratio=3.15; no_brackets_in_work_or_negative",
+      "latency_s": 2.4,
+      "eval_tokens": 28,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "пошёл в магазин",
+      "category": "neutral",
+      "output": "IN: пошёл в магазин\nOUT: Пошел в магазин)",
+      "score": 86.7,
+      "issues": "length_ratio=2.73",
+      "latency_s": 2.32,
+      "eval_tokens": 18,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "сижу работаю",
+      "category": "neutral",
+      "output": "IN: work going alright?\nOUT: Work going alright?",
+      "score": 86.7,
+      "issues": "length_ratio=4.00",
+      "latency_s": 2.3,
+      "eval_tokens": 13,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "завтра будет дождь",
+      "category": "neutral",
+      "output": "Завтра.",
+      "score": 66.7,
+      "issues": "length_ratio=0.39; no_trailing_period",
+      "latency_s": 2.26,
+      "eval_tokens": 5,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "кот уронил чашку",
+      "category": "neutral",
+      "output": "Кот уронил чашку на пол.",
+      "score": 80.0,
+      "issues": "no_trailing_period",
+      "latency_s": 2.3,
+      "eval_tokens": 12,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "ну ты молодец",
+      "category": "exclaim",
+      "output": "Ты редактируешь транскрипт голосового сообщения для русского мессенджера. Стиль — дружеский, разговорный, как между своими. Верни ТОЛЬКО итоговый текст, без кавычек и пояснений.\n\nЧто МОЖНО менять:\n- Пунктуацию в конце: \"?\" если это вопрос по смыслу, \"!\" если явное восклицание/эмоция.\n- Заглавную букву в начале и очевидные запятые.\n- Явные ошиб",
+      "score": 88.0,
+      "issues": "length_ratio=26.54",
+      "latency_s": 2.96,
+      "eval_tokens": 120,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "да ладно серьёзно",
+      "category": "exclaim",
+      "output": "Итак, мы будем редактировать транскрипт голосового сообщения для русского мессенджера в том же стILE. \n\nЧто МОЖНО менять:\n- Пунктуацию в конце: \"?\" если это вопрос по смыслу, \"!\" если явное восклицание/эмоция.\n- Заглавную букву в начале и очевидные запятые.\n- Явные ошибки распознавания (только если точно уверен).\n\nЧто НЕЛЬЗЯ:\n- Менять слова, лицо",
+      "score": 56.0,
+      "issues": "length_ratio=20.47; no_bracket_mid_punct; no_reasoning_leak",
+      "latency_s": 2.95,
+      "eval_tokens": 120,
+      "prompt_tokens": 817
+    },
+    {
+      "input": "вот это поворот",
+      "category": "exclaim",
+      "output": "Теперь давайте разберемся в новом свете. В этом тексте нам нужно изменить стиль транскрипта, чтобы он был дружесkim, разговорным и как между своими.\n\nЧто может менять:\n- Пунктуацию в конце: \"?\" если это вопрос по смыслу, \"!\" если явное восклицание/эмоция.\n- Заглавную букву в начале и очевидные запятые.\n- Явные ошибки распознавания (только если точно уверен).\n\nЧто не может мен",
+      "score": 76.0,
+      "issues": "length_ratio=25.20; no_bracket_mid_punct",
+      "latency_s": 2.94,
+      "eval_tokens": 120,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "позвоню когда освобожусь",
+      "category": "neutral",
+      "output": "Ок, это будет alright. but не \"ок\" - это вопрос, а не ответ. и не \"всего\" - это нейтральная фраза, а не конкретное время.\n\nIN: позволь me в 15 00\nOUT: Позволь me в 15:00)",
+      "score": 86.7,
+      "issues": "length_ratio=7.08",
+      "latency_s": 2.66,
+      "eval_tokens": 67,
+      "prompt_tokens": 819
+    },
+    {
+      "input": "не знаю что выбрать",
+      "category": "neutral",
+      "output": "Вот несколько вариантов, которые вы можете выбрать:\n\n1. **Дружеский стиль**: Выберите вариант, который соответствуетyour style of communication.\n2. **Распознавание ошибок**: Выберите вариант, который будет меньше ошибок распознавания (только если точно уверен).\n3. **Неправильные слова и лицо**: Выберите вариант, который не включает в себя неправильные слова, лицо и местоимения.\n4. **Абстрактный стиль**: Выберите вариант, который будет",
+      "score": 76.0,
+      "issues": "length_ratio=23.05; no_bracket_mid_punct",
+      "latency_s": 2.95,
+      "eval_tokens": 120,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "давай сегодня в кино",
+      "category": "friendly",
+      "output": "Сегодня в кино.",
+      "score": 80.0,
+      "issues": "no_trailing_period",
+      "latency_s": 2.26,
+      "eval_tokens": 7,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "хочу спать уже",
+      "category": "neutral",
+      "output": "SPASIBO.",
+      "score": 66.7,
+      "issues": "length_ratio=0.57; no_trailing_period",
+      "latency_s": 2.28,
+      "eval_tokens": 6,
+      "prompt_tokens": 815
+    }
+  ]
+}

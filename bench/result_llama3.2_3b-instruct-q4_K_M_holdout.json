@@ -1,0 +1,311 @@
+{
+  "label": "llama32_3b",
+  "model": "llama3.2:3b-instruct-q4_K_M",
+  "corpus": "holdout",
+  "avg_score": 84.6,
+  "avg_latency_s": 2.34,
+  "total_time_s": 70.1,
+  "n": 30,
+  "results": [
+    {
+      "input": "не видел моих ключей",
+      "category": "question_friendly",
+      "output": "Мои ключи?",
+      "score": 80.6,
+      "issues": "length_ratio=0.50; preserve_pronoun:моих",
+      "latency_s": 2.31,
+      "eval_tokens": 7,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "ты уже проснулся",
+      "category": "question_friendly",
+      "output": "Я уже проснулся)",
+      "score": 80.6,
+      "issues": "preserve_pronoun:ты; ends_with_question_mark",
+      "latency_s": 2.28,
+      "eval_tokens": 6,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "взял зонтик",
+      "category": "question_neutral",
+      "output": "Мы можем переписать это вместе. Какое сообщение хотите вы переписать?",
+      "score": 88.2,
+      "issues": "length_ratio=6.27",
+      "latency_s": 2.46,
+      "eval_tokens": 20,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "тебе помочь",
+      "category": "question_friendly",
+      "output": "Я готов! Какой текст нужно редактировать?",
+      "score": 80.6,
+      "issues": "length_ratio=3.73; preserve_pronoun:тебе",
+      "latency_s": 2.35,
+      "eval_tokens": 12,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "у вас есть молоко",
+      "category": "question_neutral",
+      "output": "У нас есть молоко.",
+      "score": 64.5,
+      "issues": "no_trailing_period; preserve_pronoun:вас; ends_with_question_mark",
+      "latency_s": 2.29,
+      "eval_tokens": 7,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "рад тебя видеть",
+      "category": "positive",
+      "output": "Рад)",
+      "score": 72.3,
+      "issues": "output_nonempty; length_ratio=0.27; preserve_pronoun:тебя",
+      "latency_s": 2.28,
+      "eval_tokens": 4,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "ты мне как родной",
+      "category": "positive",
+      "output": "Как дела?",
+      "score": 71.4,
+      "issues": "length_ratio=0.53; preserve_pronoun:ты; preserve_pronoun:мне",
+      "latency_s": 2.31,
+      "eval_tokens": 4,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "моя звёздочка",
+      "category": "positive",
+      "output": "Моя звездо))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 7,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "я валяюсь от смеха",
+      "category": "funny",
+      "output": "Я валяюсь от смеха))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.36,
+      "eval_tokens": 11,
+      "prompt_tokens": 817
+    },
+    {
+      "input": "бабка зажгла на танцполе",
+      "category": "funny",
+      "output": "Бабка зажгла на танцполе))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.41,
+      "eval_tokens": 14,
+      "prompt_tokens": 821
+    },
+    {
+      "input": "согласуйте техзадание до пятницы",
+      "category": "work",
+      "output": "Согласuiteся на встречу до пятницы))",
+      "score": 86.2,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.37,
+      "eval_tokens": 14,
+      "prompt_tokens": 819
+    },
+    {
+      "input": "нужно подписать три акта",
+      "category": "work",
+      "output": "Нужно подписать три акта).",
+      "score": 59.8,
+      "issues": "no_trailing_period; no_bracket_mid_punct; no_brackets_in_work_or_negative",
+      "latency_s": 2.35,
+      "eval_tokens": 11,
+      "prompt_tokens": 818
+    },
+    {
+      "input": "созвон в понедельник в десять",
+      "category": "work",
+      "output": "Созвон в понедельник в десять).",
+      "score": 59.8,
+      "issues": "no_trailing_period; no_bracket_mid_punct; no_brackets_in_work_or_negative",
+      "latency_s": 2.38,
+      "eval_tokens": 13,
+      "prompt_tokens": 820
+    },
+    {
+      "input": "отправь файл в общий чат",
+      "category": "work",
+      "output": "Отправляю...",
+      "score": 71.3,
+      "issues": "length_ratio=0.50; no_trailing_period",
+      "latency_s": 2.3,
+      "eval_tokens": 6,
+      "prompt_tokens": 818
+    },
+    {
+      "input": "деплой откатился назад",
+      "category": "work",
+      "output": "Привет. Как дела?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.31,
+      "eval_tokens": 8,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "дождь опять весь день льёт",
+      "category": "negative",
+      "output": "Дождь опять весь день льёт.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.37,
+      "eval_tokens": 11,
+      "prompt_tokens": 818
+    },
+    {
+      "input": "снова голова болит",
+      "category": "negative",
+      "output": "Снова голова болит))",
+      "score": 86.2,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.31,
+      "eval_tokens": 7,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "ничего не успеваю",
+      "category": "negative",
+      "output": "Ничего не успеваю))",
+      "score": 86.2,
+      "issues": "no_brackets_in_work_or_negative",
+      "latency_s": 2.33,
+      "eval_tokens": 9,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "вчера совсем не спал",
+      "category": "negative",
+      "output": "Вчера совсем не спал.",
+      "score": 82.8,
+      "issues": "no_trailing_period",
+      "latency_s": 2.34,
+      "eval_tokens": 9,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "пошёл в магазин",
+      "category": "neutral",
+      "output": "Пошёл в магазин)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.31,
+      "eval_tokens": 8,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "сижу работаю",
+      "category": "neutral",
+      "output": "Сидишь) работы.",
+      "score": 80.0,
+      "issues": "no_trailing_period",
+      "latency_s": 2.33,
+      "eval_tokens": 8,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "завтра будет дождь",
+      "category": "neutral",
+      "output": "Завтра будет дождь.",
+      "score": 80.0,
+      "issues": "no_trailing_period",
+      "latency_s": 2.34,
+      "eval_tokens": 9,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "кот уронил чашку",
+      "category": "neutral",
+      "output": "Кот уронил чашку.",
+      "score": 80.0,
+      "issues": "no_trailing_period",
+      "latency_s": 2.34,
+      "eval_tokens": 10,
+      "prompt_tokens": 816
+    },
+    {
+      "input": "ну ты молодец",
+      "category": "exclaim",
+      "output": "Благодарю!)",
+      "score": 80.7,
+      "issues": "no_bracket_after_qmark; preserve_pronoun:ты",
+      "latency_s": 2.3,
+      "eval_tokens": 6,
+      "prompt_tokens": 813
+    },
+    {
+      "input": "да ладно серьёзно",
+      "category": "exclaim",
+      "output": "Привет). Как дела?",
+      "score": 89.3,
+      "issues": "no_bracket_mid_punct",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 817
+    },
+    {
+      "input": "вот это поворот",
+      "category": "exclaim",
+      "output": "Привет)) как дела?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.34,
+      "eval_tokens": 8,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "позвоню когда освобожусь",
+      "category": "neutral",
+      "output": "Позвоню когда освобожусь)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.38,
+      "eval_tokens": 12,
+      "prompt_tokens": 819
+    },
+    {
+      "input": "не знаю что выбрать",
+      "category": "neutral",
+      "output": "Можно попробовать. Какое сообщение вы хотите редактировать?",
+      "score": 86.7,
+      "issues": "length_ratio=3.11",
+      "latency_s": 2.43,
+      "eval_tokens": 19,
+      "prompt_tokens": 814
+    },
+    {
+      "input": "давай сегодня в кино",
+      "category": "friendly",
+      "output": "В кино)",
+      "score": 86.7,
+      "issues": "length_ratio=0.35",
+      "latency_s": 2.29,
+      "eval_tokens": 5,
+      "prompt_tokens": 815
+    },
+    {
+      "input": "хочу спать уже",
+      "category": "neutral",
+      "output": "Я очень устал за эту неделю))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.35,
+      "eval_tokens": 10,
+      "prompt_tokens": 815
+    }
+  ]
+}

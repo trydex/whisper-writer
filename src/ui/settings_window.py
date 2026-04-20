@@ -205,8 +205,10 @@ class SettingsWindow(BaseWindow):
 
     def get_config_value(self, category, sub_category, key, meta):
         if sub_category:
-            return ConfigManager.get_config_value(category, sub_category, key) or meta['value']
-        return ConfigManager.get_config_value(category, key) or meta['value']
+            value = ConfigManager.get_config_value(category, sub_category, key)
+        else:
+            value = ConfigManager.get_config_value(category, key)
+        return meta['value'] if value is None else value
 
     def browse_model_path(self, widget):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Whisper Model File", "", "Model Files (*.bin);;All Files (*)")
@@ -232,6 +234,32 @@ class SettingsWindow(BaseWindow):
             print(f'[DBG] save_settings failed: {exc}', flush=True)
             traceback.print_exc()
 
+    # Keys whose change requires a full app restart. Everything else applies live because
+    # the rest of the code reads config on every use via ConfigManager.get_config_*.
+    _RESTART_REQUIRED_KEYS = frozenset({
+        ('model_options', 'use_api'),
+        ('model_options', 'local', 'model'),
+        ('model_options', 'local', 'model_path'),
+        ('model_options', 'local', 'device'),
+        ('model_options', 'local', 'compute_type'),
+        ('model_options', 'api', 'base_url'),
+        ('model_options', 'api', 'model'),
+        ('recording_options', 'activation_key'),
+        ('recording_options', 'input_backend'),
+        ('recording_options', 'sample_rate'),
+        ('recording_options', 'sound_device'),
+        ('post_processing', 'input_method'),
+        ('misc', 'theme'),
+    })
+
+    def _changed_keys(self, old, new, path=()):
+        """Yield tuple paths for scalar leaves that differ between old and new configs."""
+        if isinstance(old, dict) and isinstance(new, dict):
+            for key in set(old) | set(new):
+                yield from self._changed_keys(old.get(key), new.get(key), path + (key,))
+        elif old != new:
+            yield path
+
     def _save_settings_impl(self):
         import copy
         old_config = copy.deepcopy(ConfigManager._instance.config)
@@ -251,8 +279,12 @@ class SettingsWindow(BaseWindow):
             return
 
         ConfigManager.save_config()
-        QMessageBox.information(self, 'Settings Saved', 'Settings have been saved. The application will now restart.')
-        self.settings_saved.emit()
+
+        changed = list(self._changed_keys(old_config, ConfigManager._instance.config))
+        needs_restart = any(path in self._RESTART_REQUIRED_KEYS for path in changed)
+        if needs_restart:
+            QMessageBox.information(self, 'Settings Saved', 'Settings have been saved. The application will now restart.')
+            self.settings_saved.emit()
         self.close()
 
     def save_setting(self, widget, category, sub_category, key, meta):

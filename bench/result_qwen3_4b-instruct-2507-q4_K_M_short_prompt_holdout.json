@@ -1,0 +1,311 @@
+{
+  "label": "short_prompt",
+  "model": "qwen3:4b-instruct-2507-q4_K_M",
+  "corpus": "holdout",
+  "avg_score": 98.4,
+  "avg_latency_s": 2.31,
+  "total_time_s": 69.4,
+  "n": 30,
+  "results": [
+    {
+      "input": "не видел моих ключей",
+      "category": "question_friendly",
+      "output": "Не видел моих ключей",
+      "score": 89.2,
+      "issues": "ends_with_question_mark",
+      "latency_s": 2.28,
+      "eval_tokens": 8,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "ты уже проснулся",
+      "category": "question_friendly",
+      "output": "Ты уже проснулся?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.29,
+      "eval_tokens": 8,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "взял зонтик",
+      "category": "question_neutral",
+      "output": "Взял зонтик",
+      "score": 88.2,
+      "issues": "ends_with_question_mark",
+      "latency_s": 2.31,
+      "eval_tokens": 8,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "тебе помочь",
+      "category": "question_friendly",
+      "output": "Тебе помочь)?",
+      "score": 91.4,
+      "issues": "no_bracket_mid_punct",
+      "latency_s": 2.31,
+      "eval_tokens": 8,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "у вас есть молоко",
+      "category": "question_neutral",
+      "output": "У вас есть молоко",
+      "score": 89.2,
+      "issues": "ends_with_question_mark",
+      "latency_s": 2.29,
+      "eval_tokens": 7,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "рад тебя видеть",
+      "category": "positive",
+      "output": "Рад тебя видеть))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.29,
+      "eval_tokens": 7,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "ты мне как родной",
+      "category": "positive",
+      "output": "Ты мне как родной))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "моя звёздочка",
+      "category": "positive",
+      "output": "Моя звёздочка))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.32,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "я валяюсь от смеха",
+      "category": "funny",
+      "output": "Я валяюсь от смеха))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.31,
+      "eval_tokens": 10,
+      "prompt_tokens": 263
+    },
+    {
+      "input": "бабка зажгла на танцполе",
+      "category": "funny",
+      "output": "Бабка зажгла на танцполе",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.36,
+      "eval_tokens": 13,
+      "prompt_tokens": 267
+    },
+    {
+      "input": "согласуйте техзадание до пятницы",
+      "category": "work",
+      "output": "Согласуйте техзадание до пятницы",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.35,
+      "eval_tokens": 12,
+      "prompt_tokens": 266
+    },
+    {
+      "input": "нужно подписать три акта",
+      "category": "work",
+      "output": "Нужно подписать три акта?",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.31,
+      "eval_tokens": 10,
+      "prompt_tokens": 263
+    },
+    {
+      "input": "созвон в понедельник в десять",
+      "category": "work",
+      "output": "Созвон в понедельник в десять",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.35,
+      "eval_tokens": 13,
+      "prompt_tokens": 267
+    },
+    {
+      "input": "отправь файл в общий чат",
+      "category": "work",
+      "output": "Отправь файл в общий чат",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.32,
+      "eval_tokens": 10,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "деплой откатился назад",
+      "category": "work",
+      "output": "Деплой откатился назад",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 9,
+      "prompt_tokens": 263
+    },
+    {
+      "input": "дождь опять весь день льёт",
+      "category": "negative",
+      "output": "Дождь опять весь день льёт",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.37,
+      "eval_tokens": 12,
+      "prompt_tokens": 266
+    },
+    {
+      "input": "снова голова болит",
+      "category": "negative",
+      "output": "Снова голова болит",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.29,
+      "eval_tokens": 8,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "ничего не успеваю",
+      "category": "negative",
+      "output": "Ничего не успеваю",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "вчера совсем не спал",
+      "category": "negative",
+      "output": "Вчера совсем не спал",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.33,
+      "eval_tokens": 8,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "пошёл в магазин",
+      "category": "neutral",
+      "output": "Пошёл в магазин",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.32,
+      "eval_tokens": 10,
+      "prompt_tokens": 264
+    },
+    {
+      "input": "сижу работаю",
+      "category": "neutral",
+      "output": "Сижу работаю",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 6,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "завтра будет дождь",
+      "category": "neutral",
+      "output": "Завтра будет дождь",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.32,
+      "eval_tokens": 9,
+      "prompt_tokens": 262
+    },
+    {
+      "input": "кот уронил чашку",
+      "category": "neutral",
+      "output": "Кот уронил чашку",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.34,
+      "eval_tokens": 9,
+      "prompt_tokens": 263
+    },
+    {
+      "input": "ну ты молодец",
+      "category": "exclaim",
+      "output": "Ну ты молодец))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.28,
+      "eval_tokens": 7,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "да ладно серьёзно",
+      "category": "exclaim",
+      "output": "да ладно) серьёзно",
+      "score": 94.7,
+      "issues": "starts_uppercase",
+      "latency_s": 2.32,
+      "eval_tokens": 10,
+      "prompt_tokens": 263
+    },
+    {
+      "input": "вот это поворот",
+      "category": "exclaim",
+      "output": "Вот это поворот)",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 261
+    },
+    {
+      "input": "позвоню когда освобожусь",
+      "category": "neutral",
+      "output": "Позвоню когда освобожусь",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.38,
+      "eval_tokens": 12,
+      "prompt_tokens": 266
+    },
+    {
+      "input": "не знаю что выбрать",
+      "category": "neutral",
+      "output": "Не знаю что выбрать",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.26,
+      "eval_tokens": 5,
+      "prompt_tokens": 259
+    },
+    {
+      "input": "давай сегодня в кино",
+      "category": "friendly",
+      "output": "Давай сегодня в кино))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.33,
+      "eval_tokens": 8,
+      "prompt_tokens": 260
+    },
+    {
+      "input": "хочу спать уже",
+      "category": "neutral",
+      "output": "Хочу спать уже))",
+      "score": 100.0,
+      "issues": "all ok",
+      "latency_s": 2.3,
+      "eval_tokens": 8,
+      "prompt_tokens": 261
+    }
+  ]
+}

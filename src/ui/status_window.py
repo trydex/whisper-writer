@@ -817,6 +817,12 @@ class StatusWindow(BaseWindow):
             self.action_btn.setVisible(False)
             self.status_label.setText('Transcribing')
             self.status_label.show()
+        elif status == 'post_processing':
+            self.icon_stack.setCurrentWidget(self.transcribe_widget)
+            self.cancel_btn.setVisible(False)
+            self.action_btn.setVisible(False)
+            self.status_label.setText('Post-processing')
+            self.status_label.show()
         if status in ('idle', 'error', 'cancel'):
             self.close()
 
