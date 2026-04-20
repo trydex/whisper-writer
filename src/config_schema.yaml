@@ -162,6 +162,10 @@ post_processing:
       - "off"
       - "rules"
       - "llm"
+  rules_add_bracket:
+    value: true
+    type: bool
+    description: "When engine=rules: append a closing ')' smiley for non-question, non-exclamation messages. Off = leave statements bare, only '?' and '!' are placed."
   llm_api_url:
     value: http://localhost:11434/api/chat
     type: str

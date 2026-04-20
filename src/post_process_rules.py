@@ -132,8 +132,11 @@ def _capitalize_first(text):
     return text[0].upper() + text[1:]
 
 
-def rule_based_postprocess(text):
-    """Apply rule-based post-processing. Fast, deterministic."""
+def rule_based_postprocess(text, add_bracket=True):
+    """Apply rule-based post-processing. Fast, deterministic.
+
+    add_bracket: when True, append ')' to statements (non-question, non-exclamation).
+    """
     out = re.sub(r'\s+', ' ', text).strip()
     if not out:
         return out
@@ -152,7 +155,7 @@ def rule_based_postprocess(text):
         brackets = ''
     else:
         ending = ''
-        brackets = ')'
+        brackets = ')' if add_bracket else ''
 
     out = _capitalize_first(out)
     if ending:

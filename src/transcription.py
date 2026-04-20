@@ -158,7 +158,10 @@ def post_process_transcription(transcription):
     transcription = transcription.strip()
     engine = (post_processing.get('engine') or 'off').lower()
     if engine == 'rules':
-        transcription = rule_based_postprocess(transcription)
+        add_bracket = post_processing.get('rules_add_bracket')
+        if add_bracket is None:
+            add_bracket = True
+        transcription = rule_based_postprocess(transcription, add_bracket=add_bracket)
     elif engine == 'llm':
         transcription = _llm_rewrite(transcription).strip()
 

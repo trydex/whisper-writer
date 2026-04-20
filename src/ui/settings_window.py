@@ -250,6 +250,8 @@ class SettingsWindow(BaseWindow):
         ('recording_options', 'sound_device'),
         ('post_processing', 'input_method'),
         ('misc', 'theme'),
+        ('misc', 'status_window_theme'),
+        ('misc', 'hide_status_window'),
     })
 
     def _changed_keys(self, old, new, path=()):
@@ -281,9 +283,15 @@ class SettingsWindow(BaseWindow):
         ConfigManager.save_config()
 
         changed = list(self._changed_keys(old_config, ConfigManager._instance.config))
-        needs_restart = any(path in self._RESTART_REQUIRED_KEYS for path in changed)
-        if needs_restart:
-            QMessageBox.information(self, 'Settings Saved', 'Settings have been saved. The application will now restart.')
+        restart_keys = [p for p in changed if p in self._RESTART_REQUIRED_KEYS]
+        if restart_keys:
+            details = '\n'.join('- ' + '.'.join(p) for p in restart_keys)
+            QMessageBox.information(
+                self,
+                'Settings Saved',
+                'The following settings require a restart to take effect:\n\n'
+                f'{details}\n\nThe application will restart now.',
+            )
             self.settings_saved.emit()
         self.close()
 
