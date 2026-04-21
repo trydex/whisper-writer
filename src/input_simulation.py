@@ -71,9 +71,13 @@ class InputSimulator:
     def _typewrite_pynput(self, text, interval):
         """
         Inject text via SendInput Unicode (works in terminals too, like chirp does).
+
+        A non-zero delay between characters is required: without it Windows
+        occasionally drops SendInput events under load (typically whitespace),
+        which causes adjacent words to be glued together.
         """
         time.sleep(0.12)
-        kbd_lib.write(text)
+        kbd_lib.write(text, delay=max(interval, 0.005))
 
     def _typewrite_ydotool(self, text, interval):
         """
