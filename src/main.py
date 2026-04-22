@@ -131,8 +131,10 @@ print('[DBG] PyQt5 imports ok', flush=True)
 
 from key_listener import KeyListener
 from result_thread import ResultThread
+from transcription_history import TranscriptionHistory
 from ui.settings_window import SettingsWindow
 from ui.status_window import StatusWindow
+from ui.history_window import HistoryWindow
 from input_simulation import InputSimulator
 print('[DBG] local imports ok', flush=True)
 
@@ -144,6 +146,8 @@ class WhisperWriterApp(QObject):
         """
         super().__init__()
         self._preloaded_model = _PRELOADED_MODEL
+        self.history = TranscriptionHistory(maxlen=10)
+        self.history_window = None
         print('[DBG] init: creating QApplication', flush=True)
 
         self.app = QApplication(sys.argv)
@@ -398,6 +402,18 @@ class WhisperWriterApp(QObject):
 
         tray_menu = QMenu()
 
+        self.copy_last_action = QAction('Copy last transcription', self.app)
+        self.copy_last_action.triggered.connect(self.copy_last_transcription)
+        tray_menu.addAction(self.copy_last_action)
+
+        history_action = QAction('History...', self.app)
+        history_action.triggered.connect(self.show_history_window)
+        tray_menu.addAction(history_action)
+
+        tray_menu.aboutToShow.connect(self._refresh_tray_state)
+
+        tray_menu.addSeparator()
+
         settings_action = QAction('Open Settings', self.app)
         settings_action.triggered.connect(self.settings_window.show)
         tray_menu.addAction(settings_action)
@@ -546,10 +562,28 @@ class WhisperWriterApp(QObject):
         if self.result_thread and self.result_thread.isRunning():
             self.result_thread.stop()
 
+    def _refresh_tray_state(self):
+        self.copy_last_action.setEnabled(self.history.last() is not None)
+
+    def copy_last_transcription(self):
+        last = self.history.last()
+        if last is None:
+            return
+        QApplication.clipboard().setText(last)
+
+    def show_history_window(self):
+        if self.history_window is None:
+            self.history_window = HistoryWindow(self.history)
+        self.history_window.refresh()
+        self.history_window.show()
+        self.history_window.raise_()
+        self.history_window.activateWindow()
+
     def on_transcription_complete(self, result):
         """
         When the transcription is complete, type the result and start listening for the activation key again.
         """
+        self.history.add(result)
         self.input_simulator.typewrite(result)
 
         if ConfigManager.get_config_value('misc', 'noise_on_completion'):
